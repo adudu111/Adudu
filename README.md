@@ -17,6 +17,9 @@ Adudu helps you quickly remember any terms, commands, and concepts while keeping
 - Works offline — your data stays on your computer
 
 ## 📸 How it works
+Select any word or phrase you want to look up, then press the global hotkey. Adudu will instantly show a floating content window containing the information you previously added for that term.
+
+You don't need to switch applications or manually search for the term — just select it, press the hotkey, and get the information you need.
 
 ### Main Window
 
