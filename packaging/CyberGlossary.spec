@@ -23,6 +23,8 @@ a = Analysis(
         (str(project_root / "src" / "cyberglossary" / "ui" / "web" / "popup.js"), "web"),
         (str(project_root / "src" / "cyberglossary" / "ui" / "web" / "launcher.html"), "web"),
         (str(project_root / "src" / "cyberglossary" / "ui" / "web" / "launcher.js"), "web"),
+        (str(project_root / "src" / "cyberglossary" / "ui" / "web" / "create_term.html"), "web"),
+        (str(project_root / "src" / "cyberglossary" / "ui" / "web" / "create_term.js"), "web"),
         (str(project_root / "THIRD-PARTY-NOTICES"), "."),
         (str(project_root / "lgpl-3.0.txt"), "."),
         (str(project_root / "gpl-2.0.txt"), "."),

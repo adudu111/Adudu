@@ -68,10 +68,9 @@ body { background:transparent; }
 .l-group-head{display:flex; align-items:center; gap:8px; height:34px; padding:0 8px; border-radius:var(--r-md); cursor:pointer; color:var(--text-secondary); user-select:none}
 .l-group-head:hover{background:var(--surface-hover)}
 .l-group-head .chev{color:var(--text-muted); display:grid; place-items:center; transition:transform .16s ease}
-.l-group.open .l-group-head .chev{transform:rotate(90deg)}
 .l-group-head .g-name{flex:1; min-width:0; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
 .l-group-head .g-count{font-family:var(--font-mono); font-size:11px; color:var(--text-muted)}
-.l-group-head .g-tag{font-family:var(--font-mono); font-size:10px; color:var(--purple); text-transform:uppercase; letter-spacing:.06em}
+.l-group-head .g-tag{font-family:var(--font-mono); font-size:10px; font-weight:700; color:var(--purple); text-transform:uppercase; letter-spacing:.06em}
 .l-group .l-group-body{display:none}
 .l-group.open .l-group-body{display:block}
 
@@ -80,7 +79,6 @@ body { background:transparent; }
 .l-term-row{display:flex; align-items:center; gap:8px; height:38px; padding:0 8px; cursor:pointer}
 .l-term-row:hover{background:var(--surface-hover)}
 .l-term-row .chev{color:var(--text-muted); display:grid; place-items:center; transition:transform .16s ease}
-.l-term.open .l-term-row .chev{transform:rotate(90deg)}
 .l-term-row .t-name{font-family:var(--font-mono); font-weight:600; color:var(--text-primary); white-space:nowrap}
 .l-term-row .t-desc{flex:1; min-width:0; color:var(--text-muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; font-size:12px}
 .l-term-row .t-actions{display:flex; gap:2px; opacity:0; transition:opacity .12s ease}
@@ -102,7 +100,6 @@ body { background:transparent; }
 .l-sec-head{display:flex; align-items:center; gap:8px; height:30px; padding:0 8px; cursor:pointer; color:var(--text-secondary)}
 .l-sec-head:hover{background:var(--surface-hover)}
 .l-sec-head .chev{color:var(--text-muted); display:grid; place-items:center; transition:transform .16s ease}
-.l-sec.open .l-sec-head .chev{transform:rotate(90deg)}
 .l-sec-head .s-title{flex:1; min-width:0; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
 .l-sec-head .icon-btn{width:24px; height:24px; flex:0 0 24px}
 .l-sec-head .icon-btn svg{width:14px; height:14px}
@@ -141,7 +138,6 @@ body { background:transparent; }
     <input id="q" placeholder="Search terms, commands, categories…" autocomplete="off" />
   </div>
   <div class="l-body" id="lBody">
-    <div class="l-empty" id="lEmpty"><h4>Search your knowledge base</h4>Type to find terms, commands, and categories.</div>
     <div class="l-results" id="lResults"></div>
   </div>
   <div class="rz rz-n" data-edge="n"></div>

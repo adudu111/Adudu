@@ -8,6 +8,9 @@ var bridge = null;
 var lookupTerm = null;
 var lookupQuery = null;
 
+// Suppress Chromium's default browser context menu (Back/Forward/Reload/Save page/...).
+document.addEventListener("contextmenu", function (e) { e.preventDefault(); });
+
 var HUES = [
     { c: "#4A7FFF", fill: "rgba(74,127,255,.16)",  txt: "#7FA8FF" },
     { c: "#8B7CF6", fill: "rgba(139,124,246,.16)", txt: "#A99EFF" },

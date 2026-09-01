@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en" translate="no">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="google" content="notranslate" />
+<title>adudu · New Term</title>
+<style>
+:root{
+  --bg-base:#0B0F16; --surface:#0F141D; --surface-raised:#141B26;
+  --surface-hover:#1A2230; --border-subtle:#1A222F; --border:#232E40;
+  --text-primary:#E8EEF7; --text-secondary:#9AA7B8; --text-muted:#7C8AA0;
+  --accent:#4A7FFF; --accent-strong:#3B6EE8; --accent-soft:rgba(74,127,255,.14); --accent-text:#8FB0FF;
+  --danger:#F05252;
+  --popup-fill:#0E141D;
+  --font-ui:"Segoe UI",system-ui,-apple-system,"Cantarell","Noto Sans",sans-serif;
+  --font-mono:"Cascadia Mono","JetBrains Mono","Consolas",ui-monospace,monospace;
+  --r-md:6px; --r-lg:8px; --r-full:999px;
+  --sp-2:8px; --sp-3:12px; --sp-4:16px; --sp-5:20px;
+  --shadow-lg:0 6px 28px rgba(0,0,0,.5);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0; font-family:var(--font-ui); font-size:13px; color:var(--text-primary); background:transparent; overflow:hidden; -webkit-font-smoothing:antialiased}
+button{font:inherit; cursor:pointer; color:inherit}
+input,textarea,select{font:inherit; color:inherit}
+svg{display:block}
+.hidden{display:none !important}
+
+#ctwin{
+  position:absolute; inset:0; display:flex; flex-direction:column;
+  background:var(--popup-fill); border:2px solid #305CDE; border-radius:14px;
+  box-shadow:var(--shadow-lg); overflow:hidden;
+}
+#ctwin:focus,#ctwin:focus-visible{outline:none}
+
+.ct-head{height:44px; flex:0 0 44px; display:flex; align-items:center; gap:8px; padding:0 14px; border-bottom:1px solid var(--border-subtle); cursor:move}
+.ct-head .ttl{flex:1; font-weight:600; font-size:13px; color:var(--text-primary)}
+.icon-btn{width:26px; height:26px; flex:0 0 26px; display:grid; place-items:center; border:0; background:none; border-radius:var(--r-md); color:var(--text-muted)}
+.icon-btn:hover{background:var(--surface-hover); color:var(--text-primary)}
+.icon-btn svg{width:16px; height:16px}
+
+.ct-body{flex:1; overflow:auto; padding:14px 16px; min-height:0}
+.field{display:flex; flex-direction:column; gap:6px; margin-bottom:12px}
+.field label{font-size:12px; color:var(--text-muted)}
+.input{height:32px; background:var(--surface-raised); border:1px solid var(--border-subtle); border-radius:var(--r-md); color:var(--text-primary); padding:0 10px; font-size:13px; outline:none; width:100%}
+.input:focus{border-color:var(--accent); box-shadow:0 0 0 2px var(--accent-soft)}
+.textarea{height:auto; min-height:72px; padding:8px 10px; resize:vertical; line-height:1.5}
+
+.sections-label{display:flex; align-items:center; justify-content:space-between; margin-bottom:6px}
+.sections-label .sl-t{font-size:12px; color:var(--text-muted)}
+.btn-ghost{display:inline-flex; align-items:center; gap:6px; height:26px; padding:0 10px; border:0; background:none; border-radius:var(--r-md); color:var(--secondary,var(--text-secondary)); font-size:12px}
+.btn-ghost:hover{background:var(--surface-hover); color:var(--text-primary)}
+
+.sec-row{border:1px solid var(--border-subtle); border-radius:var(--r-md); background:var(--surface-raised); padding:10px; margin-bottom:10px}
+.sec-row .sr-top{display:flex; align-items:center; gap:8px; margin-bottom:8px}
+.sec-row .sr-top .input{flex:1}
+.sec-row .sr-del{width:24px; height:24px; flex:0 0 24px; display:grid; place-items:center; border:0; background:none; border-radius:var(--r-md); color:var(--danger)}
+.sec-row .sr-del:hover{background:var(--surface-hover)}
+.sec-row .sr-del svg{width:14px; height:14px}
+
+.ct-foot{height:64px; flex:0 0 64px; display:flex; align-items:center; justify-content:flex-end; gap:8px; padding:0 14px; border-top:1px solid var(--border-subtle)}
+.btn{display:inline-flex; align-items:center; justify-content:center; gap:6px; height:32px; padding:0 14px; border-radius:var(--r-md); font-size:13px; font-weight:600}
+.btn-ghost2{background:none; color:var(--text-secondary); border:1px solid transparent}
+.btn-ghost2:hover{background:var(--surface-hover); color:var(--text-primary)}
+.btn-primary{background:var(--accent-strong); color:#fff}
+.btn-primary:hover{background:var(--accent)}
+.ct-err{color:var(--danger); font-size:12px; min-height:16px; margin:0 16px 8px}
+
+.rz{position:absolute; z-index:80}
+.rz-n{top:0; left:8px; right:8px; height:5px; cursor:n-resize}
+.rz-s{bottom:0; left:8px; right:8px; height:5px; cursor:s-resize}
+.rz-e{right:0; top:8px; bottom:8px; width:5px; cursor:e-resize}
+.rz-w{left:0; top:8px; bottom:8px; width:5px; cursor:w-resize}
+.rz-ne{top:0; right:0; width:12px; height:12px; cursor:ne-resize}
+.rz-nw{top:0; left:0; width:12px; height:12px; cursor:nw-resize}
+.rz-se{bottom:0; right:0; width:12px; height:12px; cursor:se-resize}
+.rz-sw{bottom:0; left:0; width:12px; height:12px; cursor:sw-resize}
+</style>
+</head>
+<body>
+<div id="ctwin" tabindex="-1">
+  <div class="ct-head" id="ctDrag">
+    <span class="ttl">New Term</span>
+    <button class="icon-btn" id="btnClose" title="Close &middot; Esc"><span data-icon="x"></span></button>
+  </div>
+  <div class="ct-body">
+    <div class="field"><label>Term</label><input class="input" id="fName" placeholder="e.g. Command Injection" autocomplete="off" /></div>
+    <div class="field"><label>Full name</label><input class="input" id="fFull" placeholder="e.g. OS command injection" autocomplete="off" /></div>
+    <div class="field"><label>Category</label><select class="input" id="fCat"></select></div>
+
+    <div class="sections-label">
+      <span class="sl-t">Sections</span>
+      <button class="btn-ghost" id="btnAddSec"><span id="addSecIco"></span>Add section</button>
+    </div>
+    <div id="secRows"></div>
+  </div>
+  <div class="ct-err" id="ctErr"></div>
+  <div class="ct-foot">
+    <button class="btn btn-ghost2" id="btnCancel">Cancel</button>
+    <button class="btn btn-primary" id="btnCreate">Create</button>
+  </div>
+  <div class="rz rz-n" data-edge="n"></div>
+  <div class="rz rz-s" data-edge="s"></div>
+  <div class="rz rz-e" data-edge="e"></div>
+  <div class="rz rz-w" data-edge="w"></div>
+  <div class="rz rz-ne" data-edge="ne"></div>
+  <div class="rz rz-nw" data-edge="nw"></div>
+  <div class="rz rz-se" data-edge="se"></div>
+  <div class="rz rz-sw" data-edge="sw"></div>
+</div>
+
+<script src="qwebchannel.js"></script>
+<script src="create_term.js"></script>
+</body>
+</html>

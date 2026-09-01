@@ -84,6 +84,9 @@ class Bridge(QObject):
         on_change_launcher_hotkey: Callable[[], None] | None = None,
         get_launcher_hotkey_text: Callable[[], str] | None = None,
         get_third_party_notices: Callable[[], str] | None = None,
+        on_create_term_move: Callable[[], None] | None = None,
+        on_create_term_resize: Callable[[str], None] | None = None,
+        on_create_term_close: Callable[[], None] | None = None,
         parent=None,
     ):
         super().__init__(parent)
@@ -116,6 +119,10 @@ class Bridge(QObject):
         self._on_change_launcher_hotkey = on_change_launcher_hotkey
         self._get_launcher_hotkey_text = get_launcher_hotkey_text
         self._get_third_party_notices = get_third_party_notices
+        self._on_create_term_move = on_create_term_move
+        self._on_create_term_resize = on_create_term_resize
+        self._on_create_term_close = on_create_term_close
+        self._pending_create_name = ""
 
     # --- frontend readiness -------------------------------------------------
 
@@ -209,6 +216,43 @@ class Bridge(QObject):
             if term is not None:
                 pinned.append(self._term_dict(term))
         return json.dumps({"recent": recent, "pinned": pinned})
+
+    # --- create-term window -------------------------------------------------
+
+    @Slot(str)
+    def setCreateTermName(self, name: str) -> None:
+        self._pending_create_name = name
+
+    @Slot(str)
+    def openCreateTermWindow(self, name: str) -> None:
+        if self._on_request_create_term is not None:
+            self._on_request_create_term(name)
+
+    @Slot(result=str)
+    def getCreateTermInit(self) -> str:
+        pid = self._pid()
+        categories = self._glossary.list_categories(pid) if pid is not None else []
+        return json.dumps(
+            {
+                "name": self._pending_create_name or "",
+                "categories": [c.name for c in categories],
+            }
+        )
+
+    @Slot()
+    def createTermMove(self) -> None:
+        if self._on_create_term_move is not None:
+            self._on_create_term_move()
+
+    @Slot(str)
+    def createTermResize(self, edge: str) -> None:
+        if self._on_create_term_resize is not None:
+            self._on_create_term_resize(edge)
+
+    @Slot()
+    def createTermClose(self) -> None:
+        if self._on_create_term_close is not None:
+            self._on_create_term_close()
 
     # --- helpers ----------------------------------------------------------
 

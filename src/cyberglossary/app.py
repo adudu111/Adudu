@@ -112,6 +112,7 @@ def _run(argv: list[str] | None = None) -> int:
     from cyberglossary.services.lookup_service import LookupResult, LookupService
     from cyberglossary.ui.hotkey_dialog import HotkeyCaptureDialog
     from cyberglossary.ui.web.bridge import Bridge
+    from cyberglossary.ui.web.create_term_window import CreateTermWindow
     from cyberglossary.ui.web.launcher_window import LauncherWindow
     from cyberglossary.ui.web.lookup_popup import LookupPopupWindow
     from cyberglossary.ui.web.web_main_window import WebMainWindow
@@ -127,6 +128,7 @@ def _run(argv: list[str] | None = None) -> int:
     window = None
     popup = None
     launcher = None
+    create_term_win = None
     from cyberglossary.windows.single_instance import (
         SingleInstanceServer,
         notify_running_instance,
@@ -206,7 +208,11 @@ def _run(argv: list[str] | None = None) -> int:
     # --- launcher (global search) ----------------------------------------
 
     def _copy_text(text: str) -> None:
-        WindowsClipboard().write_text(text)
+        from PySide6.QtGui import QGuiApplication
+
+        clipboard = QGuiApplication.clipboard()
+        if clipboard is not None:
+            clipboard.setText(text)
 
     def _on_launcher_recent(term_id: int) -> None:
         recents = app_settings.launcher_recent
@@ -291,11 +297,21 @@ def _run(argv: list[str] | None = None) -> int:
         bridge.openTermInWindow.emit(term_id, edit_mode)
 
     def _request_create_term(name: str) -> None:
+        # Open only the standalone "New Term" window, not the whole application.
+        nonlocal create_term_win
         if popup is not None:
             popup.close_popup()
-        if window is not None:
-            window.show_window()
-        bridge.openCreateTerm.emit(name)
+        if create_term_win is None:
+            create_term_win = CreateTermWindow(bridge, web_dir())
+        bridge.setCreateTermName(name or "")
+        create_term_win.show_create_term()
+
+    def _close_create_term_window() -> None:
+        nonlocal create_term_win
+        if create_term_win is not None:
+            create_term_win.close_create_term()
+            create_term_win.deleteLater()
+            create_term_win = None
 
     # --- file / data actions (native dialogs + existing handlers) --------
 
@@ -431,6 +447,8 @@ def _run(argv: list[str] | None = None) -> int:
             launcher_hotkey_service.shutdown()
         if launcher is not None:
             launcher.deleteLater()
+        if create_term_win is not None:
+            create_term_win.deleteLater()
         if window is not None:
             window.exit_application()
         app.quit()
@@ -487,6 +505,9 @@ def _run(argv: list[str] | None = None) -> int:
             on_change_launcher_hotkey=_change_launcher_hotkey,
             get_launcher_hotkey_text=_get_launcher_hotkey_text,
             get_third_party_notices=_get_third_party_notices,
+            on_create_term_move=lambda: create_term_win.start_move() if create_term_win is not None else None,
+            on_create_term_resize=lambda edge: create_term_win.start_resize(edge) if create_term_win is not None else None,
+            on_create_term_close=_close_create_term_window,
         )
 
     bridge = _make_bridge()
@@ -514,7 +535,7 @@ def _run(argv: list[str] | None = None) -> int:
     def _rebuild(new_conn) -> None:
         nonlocal conn, profile_service, glossary_service, template_service
         nonlocal search_service, lookup, backup_service, hotkey_service, tray, window, bridge, popup
-        nonlocal launcher, launcher_hotkey_service
+        nonlocal launcher, launcher_hotkey_service, create_term_win
 
         was_paused = hotkey_service.is_paused()
         hotkey_service.shutdown()
@@ -534,6 +555,10 @@ def _run(argv: list[str] | None = None) -> int:
             launcher.close_launcher()
             launcher.deleteLater()
             launcher = None
+        if create_term_win is not None:
+            create_term_win.close_create_term()
+            create_term_win.deleteLater()
+            create_term_win = None
 
         conn, profile_service, glossary_service, template_service, search_service = (
             _build_services_from_conn(new_conn)

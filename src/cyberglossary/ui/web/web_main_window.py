@@ -13,6 +13,7 @@ from __future__ import annotations
 from pathlib import Path
 
 from PySide6.QtCore import QUrl
+from PySide6.QtGui import QGuiApplication
 from PySide6.QtWebChannel import QWebChannel
 from PySide6.QtWebEngineCore import QWebEnginePage, QWebEngineSettings
 from PySide6.QtWebEngineWidgets import QWebEngineView
@@ -36,6 +37,7 @@ class WebMainWindow(QMainWindow):
         self.setWindowTitle(APP_NAME)
         self.resize(1440, 900)
         self.setMinimumSize(1024, 640)
+        self._fit_to_screen()
 
         self.bridge = bridge
 
@@ -62,6 +64,21 @@ class WebMainWindow(QMainWindow):
         self.view.load(QUrl.fromLocalFile(str(self._index_path)))
 
     # --- lifecycle (tray-friendly) ---------------------------------------
+
+    def _fit_to_screen(self) -> None:
+        """Clamp the window to the available screen size and center it, so it opens
+        correctly on smaller displays (e.g. 1366x768 or heavily scaled monitors)."""
+        screen = self.screen() or QGuiApplication.primaryScreen()
+        if screen is None:
+            return
+        geo = screen.availableGeometry()
+        margin = 40
+        w = min(self.width(), geo.width() - margin)
+        h = min(self.height(), geo.height() - margin)
+        w = max(w, self.minimumWidth())
+        h = max(h, self.minimumHeight())
+        self.resize(w, h)
+        self.move(geo.center().x() - w // 2, geo.center().y() - h // 2)
 
     def show_window(self) -> None:
         if self.isMinimized():

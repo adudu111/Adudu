@@ -8,6 +8,9 @@
 var bridge = null;
 var state = { query: "", groups: [], recent: [], pinned: [], pinnedIds: new Set(), expanded: {} };
 
+// Suppress Chromium's default browser context menu (Back/Forward/Reload/Save page/...).
+document.addEventListener("contextmenu", function (e) { e.preventDefault(); });
+
 function termId(t) { return (t.id != null) ? t.id : t.term_id; }
 function termName(t) { return t.name || t.term || ""; }
 function isPinned(id) { return state.pinnedIds.has(id); }
@@ -52,7 +55,7 @@ var iconPaths = {
     copy: '<rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>',
     command: '<path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/>',
     minimize: '<path d="M5 12h14"/>',
-    restore: '<path d="M8 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-3"/><path d="M3 16h10a3 3 0 0 0 3-3V3"/>',
+    restore: '<rect x="9" y="9" width="12" height="12" rx="1.5"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>',
     pin: '<path d="M12 17v5"/><path d="M9 3h6l-1 7 3 3H7l3-3z"/>',
     folder: '<path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>'
 };
@@ -130,20 +133,15 @@ function groupHtml(key, terms, label) {
 
 function render() {
     var body = $("lBody");
-    var empty = $("lEmpty");
     var results = $("lResults");
-    var html = "";
     if (!state.query) {
-        empty.classList.remove("hidden");
         results.innerHTML = "";
         var parts = [];
         if (state.pinned.length) parts.push(groupHtml("Pinned", state.pinned, "Pinned"));
-        if (state.recent.length) parts.push(groupHtml("Recent", state.recent, "Recent"));
         results.innerHTML = parts.join("");
         results.querySelectorAll(".l-group").forEach(function (g) { g.classList.add("open"); });
         results.querySelectorAll(".l-group-head .chev").forEach(function (c) { c.innerHTML = svg("chevDown", 14); });
     } else {
-        empty.classList.add("hidden");
         results.innerHTML = state.groups.map(function (g) { return groupHtml(g.category, g.terms, "Category"); }).join("");
     }
     bindBody();
@@ -231,17 +229,25 @@ function bindBody() {
     });
     document.querySelectorAll("[data-copy]").forEach(function (b) {
         b.onclick = function (e) {
-            e.stopPropagation();
-            callVoid("copyText", b.dataset.copy);
-            flashCopied(b);
+            try {
+                e.stopPropagation();
+                callVoid("copyText", b.dataset.copy);
+                flashCopied(b);
+            } catch (err) {
+                console.error("JS_COPY_ERROR:", err);
+            }
         };
     });
 }
 
 function flashCopied(btn) {
-    var old = btn.innerHTML;
-    btn.innerHTML = '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#2FBF71" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>';
-    setTimeout(function () { btn.innerHTML = old; }, 700);
+    try {
+        var old = btn.innerHTML;
+        btn.innerHTML = '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#2FBF71" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>';
+        setTimeout(function () { btn.innerHTML = old; }, 700);
+    } catch (err) {
+        console.error("JS_COPY_FLASH_ERROR:", err);
+    }
 }
 
 /* ---- minimize / restore / close ---- */

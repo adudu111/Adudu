@@ -7,6 +7,10 @@
 
 window.onerror = function (msg) { window.__jserr = String(msg); };
 
+// Suppress Chromium's default browser context menu on unhandled areas; the app's
+// own custom context menus (term/category contextmenu handlers) still appear.
+document.addEventListener("contextmenu", function (e) { e.preventDefault(); });
+
 var state = {
     view: "terms",
     selectedId: null,
@@ -193,7 +197,6 @@ function showBulk() {
 
 /* ---- render: term detail ---- */
 var editingSection = false;
-var secToggleTimer = null;
 var dragAnchorIdx = -1, dragStartX = 0, dragStartY = 0, dragMoved = false;
 
 function secCard(s, index, compact, editable) {
@@ -266,21 +269,18 @@ function bindSecEvents() {
         var togg = card.querySelector("[data-toggle]");
         if (togg) togg.onclick = function () {
             if (editingSection) return;
-            if (secToggleTimer) clearTimeout(secToggleTimer);
-            secToggleTimer = setTimeout(function () { card.classList.toggle("open"); }, 220);
+            card.classList.toggle("open");
         };
     });
     document.querySelectorAll("[data-sec-title]").forEach(function (el) {
         el.addEventListener("dblclick", function (e) {
             e.stopPropagation();
-            if (secToggleTimer) clearTimeout(secToggleTimer);
             inlineEditTitle(el, +el.dataset.secTitle);
         });
     });
     document.querySelectorAll("[data-sec-content]").forEach(function (el) {
         el.addEventListener("dblclick", function (e) {
             e.stopPropagation();
-            if (secToggleTimer) clearTimeout(secToggleTimer);
             inlineEditContent(el, +el.dataset.secContent);
         });
     });
@@ -1028,7 +1028,7 @@ function initImpl() {
     })();
 
     /* dialogs */
-    $("btnNewTerm").onclick = function () { fillCatSelect(); $("fTermName").value = ""; $("fTermFull").value = ""; openDialog("dlgTerm"); };
+    $("btnNewTerm").onclick = function () { callVoid("openCreateTermWindow", ""); };
     $("btnNewCategory").onclick = function () {
         openNameDialog("category", function (val) { if (val) { callVoid("createCategory", val); } });
     };
