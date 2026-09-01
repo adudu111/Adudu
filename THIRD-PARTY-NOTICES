@@ -1,0 +1,223 @@
+Adudu — Third-Party Software Notices
+======================================
+
+This file contains the copyright and license notices for third-party software
+components that Adudu distributes (directly or bundled into the application
+package). Adudu's own source code is licensed under the MIT License (see the
+LICENSE file). Nothing in this notice grants any rights beyond those granted
+by the licenses of the components named below.
+
+Where a license text is too large to reproduce here (GNU licenses), the
+component is identified by its SPDX identifier and the canonical license text
+is available from the upstream project or the Free Software Foundation
+(https://www.gnu.org/licenses/). You should ship the full text of any license
+you actually rely on together with the application.
+
+----------------------------------------------------------------------------
+1. Qt, PySide6, QtWebEngine, QtWebChannel, shiboken6
+----------------------------------------------------------------------------
+Component   : Qt (QtCore, QtGui, QtWidgets, QtNetwork, QtSvg, QtOpenGL,
+              QtPrintSupport, QtPositioning, QtQml, QtQuick, QtQuickWidgets,
+              QtWebChannel, QtWebEngineCore, QtWebEngineWidgets, QtPdf)
+Binding     : PySide6 (Qt for Python); helper: shiboken6
+Version     : 6.11.2
+Upstream    : https://www.qt.io / https://pyside.org
+Copyright   : Copyright (C) 2016–2026 The Qt Company Ltd.
+              Copyright (C) 2016–2026 Qt for Python team
+              (Shipped by the Qt for Python (PySide6) project.)
+Notice      : Qt is available under the GNU Lesser General Public License v3
+              (LGPL-3.0), the GNU GPL v2.0, the GNU GPL v3.0, or a commercial
+              license. Adudu is distributed under the terms of the LGPL v3.
+
+Qt/PySide6 are used as separate, dynamically linked libraries. Under LGPL v3
+you may use, modify and sell the application, provided that you:
+  * retain the copyright and license notices for Qt/PySide6;
+  * provide a copy of the GNU Lesser General Public License v3;
+  * allow the Qt libraries to be replaced/relinked (the application is built
+    in "onedir" mode with the Qt DLLs shipped as separate files);
+  * do not prevent reverse engineering for debugging modified versions.
+
+GNU LESSER GENERAL PUBLIC LICENSE, Version 3, 29 June 2007.
+Canonical text: https://www.gnu.org/licenses/lgpl-3.0.txt
+(SPDX-License-Identifier for this component: LGPL-3.0-only OR
+ GPL-2.0-only OR GPL-3.0-only. Adudu uses the LGPL-3.0 option.)
+
+Qt WebEngine (QtWebEngineCore / QtWebEngineWidgets) embeds the Chromium
+project and other third-party libraries (for example FFmpeg, ICU, and NSS).
+Chromium is distributed under the BSD 3-Clause license:
+
+  Copyright (c) 2013 The Chromium Authors. All rights reserved.
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions are met:
+      1. Redistributions of source code must retain the above copyright
+         notice, this list of conditions and the following disclaimer.
+      2. Redistributions in binary form must reproduce the above copyright
+         notice, this list of conditions and the following disclaimer in the
+         documentation and/or other materials provided with the distribution.
+      3. Neither the name of the copyright holder nor the names of its
+         contributors may be used to endorse or promote products derived from
+         this software without specific prior written permission.
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+  ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+  LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+  CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+  SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+  INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+  CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+  POSSIBILITY OF SUCH DAMAGE.
+
+The full list of third-party libraries bundled inside Qt WebEngine and their
+individual license texts are provided in the Qt/QtWebEngine LICENSES files
+that ship with Qt; review them before distribution.
+
+----------------------------------------------------------------------------
+2. Python (standard library + interpreter)
+----------------------------------------------------------------------------
+Component   : CPython interpreter and the Python standard library, bundled
+              by PyInstaller.
+Version     : 3.12
+Upstream    : https://www.python.org
+Copyright   : Copyright © 2001–2026 Python Software Foundation; All Rights
+              Reserved. (Historically: Copyright © 1991–1995 by Stichting
+              Mathematisch Centrum, Amsterdam.)
+License     : Python Software Foundation License (PSF), version 2.
+Canonical   : https://docs.python.org/3/license.html
+              https://www.python.org/downloads/ (LICENSE.txt)
+
+Use is permitted under the PSF License. Retain the PSF copyright and license
+notice when distributing the Python runtime.
+
+----------------------------------------------------------------------------
+3. pywin32 (Python for Windows Extensions)
+----------------------------------------------------------------------------
+Component   : pywin32 (win32api, win32clipboard, win32con)
+Version     : 312
+Homepage    : https://github.com/mhammond/pywin32
+Copyright   : Mark Hammond (and contributors); parts copyright their
+              respective authors.
+License     : Python Software Foundation License (PSF).
+Canonical   : https://github.com/mhammond/pywin32
+              (see win32/License.txt in the distribution)
+
+Retain the pywin32 copyright and license notice when distributing.
+
+----------------------------------------------------------------------------
+4. Feather Icons
+----------------------------------------------------------------------------
+Component   : Feather icon set (the base of the application icons)
+Upstream    : https://feathericons.com
+License     : MIT
+Copyright   : Copyright (c) 2013-2017 Cole Bemis
+MIT LICENSE — Permission is hereby granted, free of charge, to any person
+obtaining a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including without
+limitation the rights to use, copy, modify, merge, publish, distribute,
+sublicense, and/or sell copies of the Software, and to permit persons to whom
+the Software is furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+----------------------------------------------------------------------------
+5. Lucide Icons
+----------------------------------------------------------------------------
+Component   : Lucide icon set (derived from Feather; the UI icon glyphs)
+Upstream    : https://lucide.dev
+License     : ISC
+Copyright   : Copyright (c) Lucide Contributors
+ISC LICENSE — Permission to use, copy, modify, and/or distribute this
+software for any purpose with or without fee is hereby granted, provided
+that the above copyright notice and this permission notice appear in all
+copies.
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+PERFORMANCE OF THIS SOFTWARE.
+
+The SVG glyphs used by the Adudu UI are taken from the Lucide icon set. If you
+redistribute the icon files, retain the attribution above. (A small number of
+trivial glyphs — e.g. the minimize/restore controls and the tray fallback —
+are original to this project and carry no third-party attribution.)
+
+----------------------------------------------------------------------------
+6. PyInstaller
+----------------------------------------------------------------------------
+Component   : PyInstaller build tool and bootloader (used to produce adudu.exe)
+Version     : 6.22.2
+Upstream    : https://pyinstaller.org
+Copyright   : Copyright (C) 2010–2026 PyInstaller Development Team
+License     : GNU General Public License v2.0 or later, WITH a special
+              exception that allows PyInstaller to be used to build and
+              distribute non-free (including commercial) programs.
+SPDX        : GPL-2.0-or-later WITH PyInstaller-exception
+Canonical   : https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt and the
+              COPYING.txt shipped with PyInstaller.
+
+PyInstaller exception (verbatim, as distributed with PyInstaller):
+  PyInstaller is licensed under the terms of the GNU General Public License as
+  published by the Free Software Foundation; either version 2 of the License,
+  or (at your option) any later version.
+
+  Exception — A special exception (the "PyInstaller exception") is granted,
+  permitting you to use, copy, modify and distribute this software and the
+  executables you build with it even if the resulting executable is licensed
+  under a license of your choosing and the source code for the relevant
+  portions of this software is not included in that executable.
+
+  "This program is distributed in the hope that it will be useful, but
+  WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+  or FITNESS FOR A PARTICULAR PURPOSE."
+
+----------------------------------------------------------------------------
+7. pyinstaller-hooks-contrib (build-time only; NOT redistributed)
+----------------------------------------------------------------------------
+Component   : Community hooks used only at build time to package Adudu.
+Version     : 2026.7
+License     : Apache License 2.0 (also made available under GPL-2.0).
+Copyright   : (c) pyinstaller-hooks-contrib contributors.
+Note        : This component is not bundled into adudu.exe; it is listed for
+              completeness only.
+
+----------------------------------------------------------------------------
+8. Bundled third-party license texts (see the "QtLicenses" directory)
+----------------------------------------------------------------------------
+The application distributes the following notice/license files under
+QtLicenses/ (alongside this file). Each corresponds to a component actually
+shipped with Adudu:
+
+  QtWebEngine-CHROMIUM-LICENSE.txt  Chromium embedded in QtWebEngine (BSD-3-Clause)
+  ICU-LICENSE.txt                   ICU / Unicode License v3 (icudtl.dat)
+  NSS-MPL-2.0.txt                   Mozilla NSS (MPL-2.0)
+  BoringSSL-LICENSE.txt             BoringSSL (Apache-2.0)
+  ANGLE-LICENSE.txt                 ANGLE (BSD-3-Clause)
+  libvpx-LICENSE.txt                libvpx (BSD-3-Clause)
+  FFmpeg-LICENSE.txt                FFmpeg (LGPL-2.1 or later)
+  LGPL-2.1.txt                      GNU Lesser GPL v2.1 (full text, for FFmpeg)
+  OpenSSL-LICENSE.txt               OpenSSL 3 (Apache-2.0) — libcrypto-3.dll
+  Mesa-LICENSE.txt                  opengl32sw.dll / Mesa 3-D (MIT/X11 + SGI)
+  MSVC-RUNTIME-NOTICE.txt           Microsoft VC++ / Universal CRT runtime
+  Python-3.12.10-LICENSE.txt        CPython 3.12.10 (PSF + its third-party notices)
+
+Additional notes on components referenced above:
+  OpenSSL 3.0.16 (libcrypto-3.dll) — bundled with the CPython runtime, used by
+    the stdlib _hashlib; license: OpenSSL 3 released under Apache-2.0.
+  Microsoft VC++/UCRT runtime (VCRUNTIME140*, MSVCP140*, ucrtbase.dll,
+    api-ms-win-crt-*), MSVC redistributable.
+  opengl32sw.dll (Qt software OpenGL) — based on Mesa 3-D (MIT/X11; some files
+    under the SGI Free Software License B).
+
+----------------------------------------------------------------------------
+End of notices.
+----------------------------------------------------------------------------

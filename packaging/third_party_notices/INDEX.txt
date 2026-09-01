@@ -1,0 +1,18 @@
+QtWebEngine & Third-Party License Texts
+========================================
+
+This directory contains the license texts for the third-party components that
+ship with Adudu (bundled inside the application). Files:
+
+  QtWebEngine-CHROMIUM-LICENSE.txt   Chromium (BSD-3-Clause)
+  ICU-LICENSE.txt                    ICU / Unicode License v3
+  NSS-MPL-2.0.txt                    Mozilla NSS (MPL-2.0)
+  BoringSSL-LICENSE.txt              BoringSSL (Apache-2.0)
+  ANGLE-LICENSE.txt                  ANGLE (BSD-3-Clause)
+  libvpx-LICENSE.txt                 libvpx (BSD-3-Clause)
+  FFmpeg-LICENSE.txt                 FFmpeg (LGPL-2.1 or later — summary)
+  LGPL-2.1.txt                       GNU Lesser GPL v2.1 (full text, for FFmpeg)
+  OpenSSL-LICENSE.txt                OpenSSL 3 (Apache-2.0)
+  Mesa-LICENSE.txt                   opengl32sw.dll / Mesa 3-D (MIT/X11 + SGI)
+  MSVC-RUNTIME-NOTICE.txt            Microsoft VC++ / Universal CRT runtime
+  Python-3.12.10-LICENSE.txt         CPython 3.12.10 (PSF + third-party)

@@ -1,0 +1,48 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Application data / databases (never committed)
+*.db
+*.db-wal
+*.db-shm
+*.sqlite
+*.sqlite3
+
+# Packaging artifacts
+*.spec.bak
+*.exe
+*.manifest
+
+# IDE / editor
+.idea/
+.vscode/
+*.swp
+
+# OS
+Thumbs.db
+Desktop.ini
+
+# Logs / temp / environment
+*.log
+logs/
+*.tmp
+*.bak
+*.env
+.env
+node_modules/
+*.whl
+*.zip

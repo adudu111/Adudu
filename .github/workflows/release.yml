@@ -1,0 +1,77 @@
+name: Release (beta)
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Build and publish beta release (Windows)
+    runs-on: windows-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev,build]"
+
+      - name: Run tests
+        run: python -m pytest tests
+
+      - name: Run lint
+        run: python -m ruff check src tests
+
+      - name: Clean stale build output
+        run: |
+          if (Test-Path build) { Remove-Item -Recurse -Force build }
+          if (Test-Path dist) { Remove-Item -Recurse -Force dist }
+
+      - name: Build executable
+        run: python -m PyInstaller --noconfirm packaging/CyberGlossary.spec
+
+      - name: Verify build output
+        run: |
+          $exe = "dist/adudu/adudu.exe"
+          if (-not (Test-Path $exe)) { throw "Build failed: $exe not found" }
+          if (-not (Test-Path "dist/adudu/_internal/THIRD-PARTY-NOTICES")) {
+            throw "THIRD-PARTY-NOTICES not bundled"
+          }
+          if (-not (Test-Path "dist/adudu/_internal/QtLicenses")) {
+            throw "QtLicenses not bundled"
+          }
+          Write-Host "Build verified: $exe"
+
+      - name: Package release (zip + checksum)
+        shell: pwsh
+        run: |
+          $tag = $env:GITHUB_REF_NAME        # e.g. v0.1.0-beta
+          $asset = "adudu-$tag-windows-x64.zip"
+          Compress-Archive -Path "dist/adudu/*" -DestinationPath $asset -Force
+          $hash = (Get-FileHash $asset -Algorithm SHA256).Hash.ToLower()
+          "$hash  $asset" | Out-File -Encoding ascii SHA256SUMS.txt
+          Write-Host "asset=$asset"
+          Write-Host "sha256=$hash"
+
+      - name: Create GitHub Pre-release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $tag = $env:GITHUB_REF_NAME
+          $asset = "adudu-$tag-windows-x64.zip"
+          gh release create "$tag" "$asset" SHA256SUMS.txt `
+            --title "adudu $tag" `
+            --notes "Public beta release. Portability: extract the ZIP and run adudu.exe (Windows 10/11 x64). See CHANGELOG.md for details and THIRD-PARTY-NOTICES for license information." `
+            --prerelease

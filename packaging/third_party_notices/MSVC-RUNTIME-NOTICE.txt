@@ -1,0 +1,27 @@
+Microsoft Visual C++ / Universal CRT Runtime
+=============================================
+
+The following files shipped with Adudu are components of the Microsoft Visual
+C++ Redistributable and the Windows Universal CRT:
+
+  VCRUNTIME140.dll, VCRUNTIME140_1.dll,
+  MSVCP140.dll, MSVCP140_1.dll, MSVCP140_2.dll,
+  ucrtbase.dll, api-ms-win-crt-*.dll
+
+These files are licensed to you by Microsoft under the "Microsoft Software
+License Terms" for the Visual C++ Redistributable / Windows SDK. Microsoft
+permits redistribution of these binaries in applications you develop,
+provided that:
+
+  * you do not remove or alter any of Microsoft's copyright or license
+    notices on the libraries;
+  * you comply with the "Microsoft Visual Studio" / "Windows SDK"
+    redistribution terms applicable to your edition.
+
+Reference:
+  https://learn.microsoft.com/en-us/visualstudio/releases/2022/redistributable
+  https://learn.microsoft.com/en-us/windows/win32/winrt/universal-crt
+
+The Microsoft redistributable license terms may be distributed alongside your
+application; see the Microsoft "Visual Studio / Windows SDK" license for the
+full text.

@@ -1,0 +1,84 @@
+name: Build Windows
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    name: Test, lint, and build (Windows)
+    runs-on: windows-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev,build]"
+
+      - name: Run tests
+        run: python -m pytest tests
+
+      - name: Run lint
+        run: python -m ruff check src tests
+
+      - name: Clean stale build output
+        run: |
+          if (Test-Path build) { Remove-Item -Recurse -Force build }
+          if (Test-Path dist) { Remove-Item -Recurse -Force dist }
+
+      - name: Build executable
+        run: python -m PyInstaller --noconfirm packaging/CyberGlossary.spec
+
+      - name: Verify build output
+        run: |
+          $exe = "dist/adudu/adudu.exe"
+          if (-not (Test-Path $exe)) { throw "Build failed: $exe not found" }
+          if (-not (Test-Path "dist/adudu/_internal/cyberglossary/database/schema.sql")) {
+            throw "schema.sql not bundled"
+          }
+          if (-not (Test-Path "dist/adudu/_internal/resources/icon.ico")) {
+            throw "icon.ico not bundled"
+          }
+          Write-Host "Build verified: $exe"
+
+      - name: Smoke test packaged app
+        env:
+          QT_QPA_PLATFORM: offscreen
+        run: |
+          # Headless check: start the packaged exe, confirm it initializes
+          # (creates the SQLite DB in an isolated temp dir) and stays alive.
+          $dataDir = Join-Path $env:RUNNER_TEMP "cyberglossary-smoke"
+          if (Test-Path $dataDir) { Remove-Item -Recurse -Force $dataDir }
+          New-Item -ItemType Directory -Force -Path $dataDir | Out-Null
+          $env:CYBERGLOSSARY_DATA_DIR = $dataDir
+
+          $proc = Start-Process -FilePath "dist/adudu/adudu.exe" -PassThru
+          $db = Join-Path $dataDir "cyberglossary.db"
+          $found = $false
+          for ($i = 0; $i -lt 60; $i++) {
+            Start-Sleep -Milliseconds 500
+            if (Test-Path $db) { $found = $true; break }
+            if ($proc.HasExited) { break }
+          }
+          $alive = -not $proc.HasExited
+          if (-not $proc.HasExited) { Stop-Process -Id $proc.Id -Force }
+          if (-not ($found -and $alive)) {
+            throw "Packaged smoke test failed (dbCreated=$found processAlive=$alive)"
+          }
+          Write-Host "Packaged smoke test passed (dbCreated=$found processAlive=$alive)"
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: adudu-windows
+          path: dist/adudu
+          if-no-files-found: error
