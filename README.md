@@ -72,7 +72,7 @@ Some features may change and bugs may still exist.
 
 If you find a problem or have an idea, please send feedback:
 
-📧 **Email:** `adudu120805@example.com`
+📧 **Email:** `adudu120805@gmail.com`
 
 ## ❤️ Support Adudu to fix his space ship
 
