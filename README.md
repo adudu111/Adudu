@@ -2,7 +2,7 @@
 
 > Offline-first personal cybersecurity glossary & quick lookup tool.
 
-Adudu helps you quickly remember cybersecurity terms, commands, and concepts while keeping your data stored locally on your computer.
+Adudu helps you quickly remember any terms, commands, and concepts while keeping your data stored locally on your computer.
 
 ## ✨ Features
 
