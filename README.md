@@ -4,17 +4,17 @@
 
 Adudu helps you quickly remember any terms, commands, and concepts while keeping your data stored locally on your computer.
 
-## ✨ Features
+##  Features
 
-- 📚 Organize terms with categories
-- 🔎 Fast full-text search
-- ⚡ Global lookup with a hotkey
-- 🚀 Quick launcher for terms and commands
-- 📋 Copy terms and commands instantly
-- 🖥️ Movable and resizable windows
-- 👤 Multiple profiles
-- 💾 Import / Export / Backup
-- 🔒 Works offline — your data stays on your computer
+- Organize terms with categories
+- Fast full-text search
+- Global lookup with a hotkey
+- Quick launcher for terms and commands
+- Copy terms and commands instantly
+- Movable and resizable windows
+- Multiple profiles
+- Import / Export / Backup
+- Works offline — your data stays on your computer
 
 ## 📸 How it works
 
@@ -64,7 +64,7 @@ Download the latest version from:
 
 No Python or additional dependencies are required.
 
-## 🧪 Beta
+##  Beta
 
 Adudu is currently in **beta**.
 
