@@ -20,7 +20,6 @@ Adudu helps you quickly remember cybersecurity terms, commands, and concepts whi
 
 ### Main Window
 
-![Main Window].
 <img width="1289" height="866" alt="image" src="https://github.com/user-attachments/assets/7c50fc12-63bb-405e-90bd-08bfc1cb8241" />
 
 
@@ -28,7 +27,6 @@ Create categories and terms, then organize your knowledge with sections and alia
 
 ### Global Lookup
 
-![Global Lookup]
 <img width="606" height="528" alt="image" src="https://github.com/user-attachments/assets/e1b16f21-6cab-4963-9737-8447375c470d" />
 
 
@@ -40,8 +38,8 @@ Adudu will search your glossary and show the matching information.
 
 ### Quick Launcher
 
-![Quick Launcher]
-<img width="634" height="555" alt="image" src="https://github.com/user-attachments/assets/cc0d69f4-6d26-4770-ac90-5ddf0e659393" />
+<img width="1125" height="795" alt="image" src="https://github.com/user-attachments/assets/1dacbc68-10f9-4495-a3bc-ad8597de2a0e" />
+
 
 
 Press:
@@ -74,13 +72,13 @@ Some features may change and bugs may still exist.
 
 If you find a problem or have an idea, please send feedback:
 
-📧 **Email:** `your-email@example.com`
+📧 **Email:** `adudu120805@example.com`
 
 ## ❤️ Support Adudu
 
 If you find Adudu useful and would like to support the project:
 
-**PayPal:** `paypal@adudu680`
+**PayPal:** `paypal.me/adudu605`
 
 Any support is greatly appreciated ❤️
 
