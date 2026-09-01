@@ -1,6 +1,6 @@
-# adudu
+# Adudu
 
-**adudu** is a personal, **offline-first** knowledge-management application for building your own glossary of terms, commands, and concepts. You own and control all of your knowledge — it lives in a local database on your machine.
+**Adudu** is a personal, **offline-first** knowledge-management application for building your own glossary of terms, commands, and concepts. You own and control all of your knowledge — it lives in a local database on your machine.
 
 adudu is **not** an AI dictionary. It makes no LLM/API calls, needs no API key or account, and works entirely offline.
 
