@@ -1,4 +1,4 @@
-<img width="251" height="174" alt="image" src="https://github.com/user-attachments/assets/1f1ddbd0-0889-4346-864a-7cd477435c97" /># Adudu
+# Adudu
 
 > Offline-first personal cybersecurity glossary & quick lookup tool.
 
@@ -20,13 +20,17 @@ Adudu helps you quickly remember cybersecurity terms, commands, and concepts whi
 
 ### Main Window
 
-![Main Window](docs/images/main-window.png)
+![Main Window].
+<img width="1289" height="866" alt="image" src="https://github.com/user-attachments/assets/7c50fc12-63bb-405e-90bd-08bfc1cb8241" />
+
 
 Create categories and terms, then organize your knowledge with sections and aliases.
 
 ### Global Lookup
 
-![Global Lookup](docs/images/lookup.png)
+![Global Lookup]
+<img width="606" height="528" alt="image" src="https://github.com/user-attachments/assets/e1b16f21-6cab-4963-9737-8447375c470d" />
+
 
 Select text anywhere on your computer and press:
 
@@ -36,7 +40,9 @@ Adudu will search your glossary and show the matching information.
 
 ### Quick Launcher
 
-![Quick Launcher](docs/images/launcher.png)
+![Quick Launcher]
+<img width="634" height="555" alt="image" src="https://github.com/user-attachments/assets/cc0d69f4-6d26-4770-ac90-5ddf0e659393" />
+
 
 Press:
 
