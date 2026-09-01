@@ -74,7 +74,7 @@ If you find a problem or have an idea, please send feedback:
 
 📧 **Email:** `adudu120805@example.com`
 
-## ❤️ Support Adudu
+## ❤️ Support Adudu to fix his space ship
 
 If you find Adudu useful and would like to support the project:
 
