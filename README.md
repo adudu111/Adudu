@@ -87,3 +87,7 @@ Any support is greatly appreciated ❤️
 Adudu is released under the MIT License.
 
 See `THIRD-PARTY-NOTICES` for third-party software licenses.
+
+## Contact
+email: adudu120805@gmail.com
+linked: https://www.linkedin.com/in/aduduinthearea
