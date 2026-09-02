@@ -1,6 +1,6 @@
 # Adudu
 
-> Offline-first personal cybersecurity glossary & quick lookup tool.
+> Offline-first personal glossary & quick lookup tool.
 
 Adudu helps you quickly remember any terms, commands, and concepts while keeping your data stored locally on your computer.
 
@@ -44,7 +44,8 @@ Adudu will search your glossary and show the matching information.
 
 ### Quick Launcher
 
-<img width="1125" height="795" alt="image" src="https://github.com/user-attachments/assets/1dacbc68-10f9-4495-a3bc-ad8597de2a0e" />
+<img width="1457" height="913" alt="image" src="https://github.com/user-attachments/assets/06fbb9ef-2161-41b5-9ddc-7d40c770b363" />
+
 
 
 
