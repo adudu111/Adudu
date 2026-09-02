@@ -20,12 +20,13 @@ Adudu helps you quickly remember any terms, commands, and concepts while keeping
 Select any word or phrase you want to look up, then press the global hotkey. Adudu will instantly show a floating content window containing the information you previously added for that term.
 
 You don't need to switch applications or manually search for the term — just select it, press the hotkey, and get the information you need.
-<img width="1855" height="974" alt="image" src="https://github.com/user-attachments/assets/aafcbb7d-fe5b-4417-b623-cb6b8b278611" />
+<img width="1600" height="851" alt="image" src="https://github.com/user-attachments/assets/bc1231cd-48ed-44a2-837b-c6d1569813b7" />
+
 
 
 ### Main Window
 
-<img width="1289" height="866" alt="image" src="https://github.com/user-attachments/assets/7c50fc12-63bb-405e-90bd-08bfc1cb8241" />
+<img width="1440" height="935" alt="image" src="https://github.com/user-attachments/assets/84a59c14-dddd-4470-bb26-77784b25165a" />
 
 
 Create categories and terms, then organize your knowledge with sections and aliases.
